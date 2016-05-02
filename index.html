@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>MicroPython</h1>
+                    <h3>Bringing Python to the Internet of Things</h3>
+                </section>
+
+                <section>
+                    <h1>About me</h1>
+                    <ul>
+                        <li>I run <a href="www.xithing.io">XIThing</a> (part of <a href="www.media2b.net">Media2B</a>)</li>
+                        <li>I'm a software guy</li>
+                        <li>Internet of Things, ahoy!</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>So, MicroPython</h1>
+                    <p>Who heard of it before?</p>
+                </section>
+
+                <!-- About -->
+
+                <section>
+                    <section>
+                        <h1>So I said no...</h1>
+                        <p>MicroPython is a lean and fast implementation of the Python 3 programming language that is optimised to run on a microcontroller.</p>
+                    </section>
+
+                    <section id="fragments">
+                        <h1>Kickstarted in November 2013</h1>
+                        <p class="fragment">Other things that happened in 2013</p>
+                        <ul>
+                            <li>Edward Snowden accidentally sends some documents to the wrong email address</li>
+                            <li>The EU thought Cyprus was a really good boy and gave it €10 billion</li>
+                            <li>People printed a gun and called it the "Lulz Liberator"</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Development</h1>
+                        <ul>
+                            <li>Original kickstarter ended April 2015</li>
+                            <li>One fulltime contributor: Damien George</li>
+                            <li>Also included the pyboard</li>
+                            <img src="img/pyboard.jpg"/>
+                        </ul>
+                    </section>
+
+                    <section>
+
+                    </section>
+                </section>
+
+                <section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <a target="_blank" href="http://micropython.org/live/"><img src="img/demotime.png"/></a>
+                    </section>
+
+                    <section>
+                        <img src="img/fantasea.jpg"/>
+                    </section>
+                </section>
+
+                <section>
+
+                </section>
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                    history: true,
+
+                    // More info https://github.com/hakimel/reveal.js#dependencies
+                    dependencies: [
+                        { src: 'plugin/markdown/marked.js' },
+                        { src: 'plugin/markdown/markdown.js' },
+                        { src: 'plugin/notes/notes.js', async: true },
+                        { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+]
+            });
+        </script>
+    </body>
+</html>
