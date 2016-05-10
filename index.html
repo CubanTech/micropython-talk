@@ -40,20 +40,23 @@
 
                 <section>
                     <h1>So, MicroPython</h1>
-                    <p>Who has heard of it before?</p>
+                    <p>Who had heard of it before?</p>
+                    <p class="fragment">And who used it before?</p>
+                    <p class="fragment">For something serious / production ready?</p>
                 </section>
 
                 <!-- About -->
 
                 <section>
                     <section>
-                        <h1>So I said no...</h1>
+                        <h1>So you said no...</h1>
                         <p>MicroPython is a lean and fast implementation of the Python 3 programming language that is optimised to run on a microcontroller.</p>
+                        <!-- <p>Goal: Use Python where CPython could not be used at all.</p> -->
                     </section>
 
-                    <section id="fragments">
+                    <section>
                         <h1>Kickstarted in November 2013</h1>
-                        <p class="fragment">Other things that happened in 2013</p>
+                        <p >Other things that happened in 2013</p>
                         <ul>
                             <li>Edward Snowden accidentally sends some documents to the wrong email address</li>
                             <li>The EU thought Cyprus was a really good boy and gave it €10 billion</li>
@@ -65,75 +68,319 @@
                         <h1>Development</h1>
                         <ul>
                             <li>Original kickstarter ended April 2015</li>
-                            <li>One fulltime contributor: Damien George</li>
-                            <li>Also included the pyboard</li>
+                            <li>Initially only on the pyboard, now on multiple chips</li>
                             <img src="img/pyboard.jpg"/>
                         </ul>
                     </section>
+                </section>
+
+                <!-- WHY -->
+
+                <section>
+                    <section>
+                        <h1>But why?</h1>
+                    </section>
 
                     <section>
+                        <img src="img/why-not.jpg"/>
+                    </section>
 
+                    <section>
+                        <h1>This is why</h1>
+                        <ul>
+                            <li>Existing community (that includes you)</li>
+                            <li>Easy to learn, with powerful features</li>
+                            <li>Ideal for rapid prototyping</li>
+                            <li>Bridge between web-world and IoT world</li>
+                            <li>Lots of opportunities for optimization!</li>
+                        </ul>
+                        <aside class="notes">
+                            Features:
+                              * Classes, list comprehensions, generators, exceptions, ...
+
+                            Optimization:
+                              * Consts (like #define in C; substitute numeric value for the ID)
+                              * Function calls
+                              * Python is compiled, so compiler optimizations are possible
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h1>And why not CPython?</h1>
+                        <p>Mainly due to RAM usage. Examples:</p>
+                        <ul>
+                            <li>Preallocation of 257 + 5 ints = 4k RAM</li>
+                            <li>Method calls: led.intensitivity(1000) = 36 bytes RAM</li>
+                        </ul>
                     </section>
                 </section>
 
-                <section>
+                <!-- WHAT IT IS -->
 
+                <section>
+                    <h1>So, what is it?</h1>
                 </section>
+
+                <section>
+                    <h1>It's Python! (3.4-ish)</h1>
+                    <pre><code class="hljs" data-trim contenteditable>
+>>> print('Hello world!')
+Hello world!
+
+>>> with open('pygrunn.txt') as f:
+>>>     f.write('Hello PyGrunn!')
+
+>>> try:
+>>>     1/0
+>>> except ZeroDivisionError as e:
+>>>     print("Oh, you!")
+Oh, you!
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h1>But not all of it</h1>
+                    <pre><code class="hljs" data-trim contenteditable>
+>>> import functools
+Traceback (most recent call last):
+    File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+ImportError: no module named 'functools'
+>>> import this
+Traceback (most recent call last):
+    File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+ImportError: no module named 'this'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h1>At least:</h1>
+                    <ul>
+                        <li>sys</li>
+                        <li>time</li>
+                        <li>struct</li>
+                        <li>machine - functions related to the board</li>
+                        <li>micropython - internals</li>
+                    </ul>
+                    <p>Specific ports provides specific hooks, REPL and custom modules</p>
+                </section>
+
+                <section>
+                    <h1>Oh, also async keywords</h1>
+                    <pre><code class="hljs" data-trim contenteditable>
+async def ping_pygrunn():
+    return await ping_server('pygrunn.org')
+                    </code></pre>
+                <!-- TODO: Finish -->
+                </section>
+
+                <section>
+                    <h1>Theoretical minimum system requirements</h1>
+                    <p>128K ROM / 8K RAM (after subtracting other software)</p>
+                </section>
+
+                <section>
+                    <h1>Reference implementation: PyBoard</h1>
+                    <ul>
+                        <li>ARM 32bit</li>
+                        <li>168Mhz, 1Mb Flash, 192kb RAM</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>External standard library</h1>
+                    <p>Written in Python</p>
+                    <pre><code class="hljs" data-trim contenteditable>
+$ micropython -m upip install micropython-functools
+$ ./micropython 
+MicroPython v1.7-116-g8dd704b on 2016-04-19; linux version
+Use Ctrl-D to exit, Ctrl-E for paste mode
+>>> import functools
+>>> dir(functools)
+['__name__', 'reduce', 'partial', 'update_wrapper', '__file__', 'wraps']
+                    </code></pre>
+                    <a href="https://github.com/micropython/micropython-lib">https://github.com/micropython/micropython-lib</a>
+                </section>
+
+                <!-- HOW SO SMALL -->
+
+                <section>
+                    <h1>How so micro?</h1>
+                </section>
+
+                <section>
+                    <h1>Mainly RAM optimizations</h1>
+                    <ul>
+                        <li>Many strings predefined in ROM (led, on, read, ...)</li>
+                        <li>Optimised method calls (like PyPy)</li>
+                        <li>Integers compressed in pointers</li>
+                        <li>Everything that can be in ROM, is in ROM</li>
+                        <li>Garbage collection: Mark-and-sweep (no reference counts)</li>
+                    </ul>
+                </section>
+
+                <!-- DEMO -->
 
                 <section>
                     <section>
                         <a target="_blank" href="http://micropython.org/live/"><img src="img/demotime.png"/></a>
                     </section>
+                </section>
+
+                <!-- HARDWARE -->
+
+                <section>
+                    <section>
+                        <h1>Hardware features</h1>
+                    </section>
 
                     <section>
-                        <img src="img/fantasea.jpg"/>
+                        <h1>You can:</h1>
+                        <ul>
+                            <li>Disable interrupts</li>
+                            <li>Trigger and disable GC</li>
+                            <li>Write inline assembler</li>
+                            <li>Emit bytecode or machine code</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Inline assembler</h1>
+                        <pre><code class="hljs" data-trim contenteditable>
+@micropython.asm_thumb
+def led_on():
+    movwt(r0, stm.GPIOA)
+    movw(r1, 1 &lt;&lt; 13)
+    strh(r1, [r0, stm.GPIO_BSRRL])
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h1>Native code emitter</h1>
+                        <pre><code class="hljs" data-trim contenteditable>
+@micropython.native
+def foo(self, arg):
+    # code
+                        </code></pre>
+                        <p>Roughly twice as fast</p>
+                        <aside class="notes">
+                            http://hinch.me.uk/html/reference/speed_python.html
+                        </aside>
+                    </section>
+                    <!-- TODO: Finish -->
+                </section>
+
+
+                <!-- BOARDS -->
+
+                <section>
+                    <h1>Some supported board</h1>
+                </section>
+
+                <section>
+                    <h1>The pyboard</h1>
+                    <img src="img/pyboard.jpg"/>
+                    <li>Accerelometer, RTC, 4 LEDs, 2 switches, 30 GPIO</li>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>BBC micro:bit</h1>
+                        <img src="img/microbit.jpg"/>
+                    </section>
+
+                    <section>
+                        <h1>BBC micro:bit</h1>
+                        <p>Supplied to <strong>1 million</strong> school children</p>
+                        <ul>
+                            <li>25 LEDs</li>
+                            <li>Two programmable buttons</li>
+                            <li>Accelerometer & magnetometer</li>
+                            <li>Bluetooth</li>
+                            <li>5 GPIO</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h1>Comes with:</h1>
+                        <ul>
+                            <li>Online Python editor</li>
+                            <li>Graphical drag-and-drop editor</li>
+                            <li>Mobile app to upload code</li>
+                            <li>Tons of documentations, teaching material, etc.</li>
+                        </ul>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        <h1>On what does it run?</h1>
-                    </section>
-
-                    <section>
-                        <h1>The pyboard</h1>
-                        <img src="img/pyboard.jpg"/>
-                    </section>
-                    <section>
-
                         <h1>The WiPy</h1>
                         <img src="img/wipy.png"/>
-                    </section>
-
-                    <section id="fragments">
-                        <h1>BBC micro:bit</h1>
-                        <img src="img/microbit.jpg"/>
-                        <p class="fragment">Supplied to <strong>1 million</strong> school children</p>
-
-                        <aside class="notes">
-                            • 25 red LEDs
-                            • Two programmable buttons
-                            • On-board motion detector or “accelerometer”
-                            • A built-in compass or “magnetometer”
-                            • Bluetooth
-                            • Five Input and Output (I/O)
-                        </aside>
+                        <a href="http://wipy.io">http://wipy.io</a>
                     </section>
 
                     <section>
-                        <h1>Runs on ESP8266 chips</h1>
+                        <h1>The WiPy</h1>
+                        <ul>
+                            <li>OTA updates</li>
+                            <li>WiFi Direct</li>
+                            <!-- TODO: Why that's cool -->
+
+                        </ul>
+
                     </section>
                 </section>
+
+                <section>
+                    <h1>And LoPy</h1>
+                    <img src="img/lopy.png"/>
+                </section>
+
+                <section>
+                    <h1>Also runs on ESP8266 chips</h1>
+                    <img src="img/huzzah.jpg"/>
+                </section>
+
+                <!-- CURRENT STATE -->
 
                 <section>
                     <h1>Current state of MicroPython</h1>
+                </section>
+
+                <section>
+                    <h1>Development</h1>
                     <ul>
-                        <li>One full time developer</li>
-                        <li>Kickstart in May for ESP8266 chip</li>
+                        <li>One full time developer, two core contributors</li>
+                        <li>Partly funded by the European Space Agency</li>
+                        <li>Kickstart in May 2016 for proper ESP8266 sockets support</li>
                         <li>Still feels like early days</li>
+                    </ul>
+
+                    <aside class="notes">
+                        ESA: Research and development will focus on making MicroPython more robust for critical embedded systems, with emphasis on determinism of the virtual machine and memory management. 
+
+                    </aside>
+                </section>
+
+                <section>
+                    <h1>Is it production ready?</h1>
+                    <p>Eh, not really (unless you have a micro:bit).</p>
+                    <p>But it's amazing for prototyping!</p>
+                    <p>Or, embedding in games and apps</p>
+                </section>
+
+                <!-- END -->
+                <section>
+                    <h1>Summary</h1>
+                    <ul>
+                        <li>We have Python on microcontrollers.</li>
+                        <li>And it works!</li>
                     </ul>
                 </section>
 
+                <section>
+                    <h1>Thank you!</h1>
+                    <p>Questions?</p>
+                </section>
             </div>
         </div>
 
