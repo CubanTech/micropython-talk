@@ -4,13 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>reveal.js</title>
+        <title>MicroPython - Bringing Python to the Internet of Things</title>
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/black.css">
 
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<style>
+			section img {
+				max-height: 400px !important;
+			}
+		</style>
 
         <!-- Printing and PDF exports -->
         <script>
@@ -30,19 +36,33 @@
                 </section>
 
                 <section>
-                    <h1>About me</h1>
-                    <ul>
-                        <li>I run <a href="www.xithing.io">XIThing</a> (part of <a href="www.media2b.net">Media2B</a>)</li>
-                        <li>I'm a software guy</li>
-                        <li>Internet of Things, ahoy!</li>
-                    </ul>
+					<section>
+						<h1>About me</h1>
+					</section>
+					<section>
+						<h2>I co-founded</h2>
+						<img src="img/xithing-logo.png"/>
+					</section>
+					<section>
+						<h2>Which is part of</h2>
+						<img src="img/media2b-logo.png"/>
+					</section>
+					<section>
+						<h2>We build</h2>
+						<img src="img/theinternetofthings.jpg"/>
+					</section>
+					<section>
+						<h2>I am a</h2>
+						<img src="img/software-guy.jpg"/>
+					</section>
                 </section>
 
                 <section>
                     <h1>So, MicroPython</h1>
                     <p>Who had heard of it before?</p>
                     <p class="fragment">And who used it before?</p>
-                    <p class="fragment">For something serious / production ready?</p>
+                    <p class="fragment">For something serious?</p>
+                    <p class="fragment">For something that is running right now?</p>
                 </section>
 
                 <!-- About -->
@@ -55,8 +75,12 @@
                     </section>
 
                     <section>
-                        <h1>Kickstarted in November 2013</h1>
-                        <p >Other things that happened in 2013</p>
+                        <h2>Kickstarted in November 2013</h2>
+						<img src="img/damien-george.jpg"/>
+                    </section>
+					
+                    <section>
+                        <h2>Other things that happened in 2013</h2>
                         <ul>
                             <li>Edward Snowden accidentally sends some documents to the wrong email address</li>
                             <li>The EU thought Cyprus was a really good boy and gave it €10 billion</li>
@@ -65,12 +89,13 @@
                     </section>
 
                     <section>
-                        <h1>Development</h1>
+                        <h2>Development</h2>
                         <ul>
                             <li>Original kickstarter ended April 2015</li>
+                            <li>Code open source</li>
                             <li>Initially only on the pyboard, now on multiple chips</li>
-                            <img src="img/pyboard.jpg"/>
                         </ul>
+						<img src="img/pyboard.jpg"/>
                     </section>
                 </section>
 
@@ -82,14 +107,20 @@
                     </section>
 
                     <section>
+                        <img src="img/stupid-questions.jpg"/>
+                    </section>
+
+                    <section>
                         <img src="img/why-not.jpg"/>
                     </section>
 
                     <section>
-                        <h1>This is why</h1>
+                        <h2>This is why</h2>
                         <ul>
                             <li>Existing community (that includes you)</li>
                             <li>Easy to learn, with powerful features</li>
+                            <li>Good separation between int and float (unlike JS/Lua)</li>
+                            <li>Native bitwise operations on 1's and 0's (unlike Lua)</li>
                             <li>Ideal for rapid prototyping</li>
                             <li>Bridge between web-world and IoT world</li>
                             <li>Lots of opportunities for optimization!</li>
@@ -106,11 +137,11 @@
                     </section>
 
                     <section>
-                        <h1>And why not CPython?</h1>
+                        <h2>And why not CPython?</h2>
                         <p>Mainly due to RAM usage. Examples:</p>
                         <ul>
                             <li>Preallocation of 257 + 5 ints = 4k RAM</li>
-                            <li>Method calls: led.intensitivity(1000) = 36 bytes RAM</li>
+                            <li>Method calls: led.on() creates a bound method object = 20 bytes RAM</li>
                         </ul>
                     </section>
                 </section>
@@ -122,7 +153,7 @@
                 </section>
 
                 <section>
-                    <h1>It's Python! (3.4-ish)</h1>
+                    <h2>It's Python! (3.4-ish)</h2>
                     <pre><code class="hljs" data-trim contenteditable>
 >>> print('Hello world!')
 Hello world!
@@ -139,7 +170,7 @@ Oh, you!
                 </section>
 
                 <section>
-                    <h1>But not all of it</h1>
+                    <h2>But not all of it</h2>
                     <pre><code class="hljs" data-trim contenteditable>
 >>> import functools
 Traceback (most recent call last):
@@ -153,7 +184,7 @@ ImportError: no module named 'this'
                 </section>
 
                 <section>
-                    <h1>At least:</h1>
+                    <h2>At least:</h2>
                     <ul>
                         <li>sys</li>
                         <li>time</li>
@@ -165,29 +196,33 @@ ImportError: no module named 'this'
                 </section>
 
                 <section>
-                    <h1>Oh, also async keywords</h1>
+                    <h2>Oh, also async keywords</h2>
                     <pre><code class="hljs" data-trim contenteditable>
 async def ping_pygrunn():
     return await ping_server('pygrunn.org')
                     </code></pre>
-                <!-- TODO: Finish -->
                 </section>
 
                 <section>
-                    <h1>Theoretical minimum system requirements</h1>
-                    <p>128K ROM / 8K RAM (after subtracting other software)</p>
+                    <h2>Theoretical minimum system requirements</h2>
+                    <p>128kb ROM / 8kb RAM (after subtracting other software)</p>
                 </section>
 
                 <section>
-                    <h1>Reference implementation: PyBoard</h1>
+                    <h2>Reference implementation: PyBoard</h2>
                     <ul>
-                        <li>ARM 32bit</li>
-                        <li>168Mhz, 1Mb Flash, 192kb RAM</li>
+                        <li>ARM 32bit Cortex M4 @ 168Mhz</li>
+                        <li>1Mb flash, 192kb RAM</li>
                     </ul>
                 </section>
+				
+                <section>
+                    <h2>Unix port</h2>
+                    <p>Around 280kb flash</p>
+                </section>
 
                 <section>
-                    <h1>External standard library</h1>
+                    <h2>External standard library</h2>
                     <p>Written in Python</p>
                     <pre><code class="hljs" data-trim contenteditable>
 $ micropython -m upip install micropython-functools
@@ -203,20 +238,31 @@ Use Ctrl-D to exit, Ctrl-E for paste mode
 
                 <!-- HOW SO SMALL -->
 
-                <section>
-                    <h1>How so micro?</h1>
-                </section>
+				<section>
+					<section>
+						<h1>How so micro?</h1>
+					</section>
 
-                <section>
-                    <h1>Mainly RAM optimizations</h1>
-                    <ul>
-                        <li>Many strings predefined in ROM (led, on, read, ...)</li>
-                        <li>Optimised method calls (like PyPy)</li>
-                        <li>Integers compressed in pointers</li>
-                        <li>Everything that can be in ROM, is in ROM</li>
-                        <li>Garbage collection: Mark-and-sweep (no reference counts)</li>
-                    </ul>
-                </section>
+					<section>
+						<h2>Mainly RAM optimizations</h2>
+						<ul>
+							<li>Many strings predefined in ROM (led, on, read, ...)</li>
+							<li>Optimised method calls</li>
+							<li>Everything that can be in ROM, is in ROM</li>
+							<li>Garbage collection: Mark-and-sweep (no reference counts)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Tagged pointers</h2>
+						<p>A tagged pointer is a pointer (concretely a memory address) with additional data associated with it</p>
+						<ul>
+							<li>Integer - xxxx xxxx xxxx xxx1</li>
+							<li>String - xxxx xxxx xxxx xx10</li>
+							<li>Object - xxxx xxxx xxxx xx00</li>
+						</ul>
+					</section>
+				</section>
 
                 <!-- DEMO -->
 
@@ -234,7 +280,7 @@ Use Ctrl-D to exit, Ctrl-E for paste mode
                     </section>
 
                     <section>
-                        <h1>You can:</h1>
+                        <h2>You can:</h2>
                         <ul>
                             <li>Disable interrupts</li>
                             <li>Trigger and disable GC</li>
@@ -244,7 +290,7 @@ Use Ctrl-D to exit, Ctrl-E for paste mode
                     </section>
 
                     <section>
-                        <h1>Inline assembler</h1>
+                        <h2>Inline assembler</h2>
                         <pre><code class="hljs" data-trim contenteditable>
 @micropython.asm_thumb
 def led_on():
@@ -255,41 +301,50 @@ def led_on():
                     </section>
 
                     <section>
-                        <h1>Native code emitter</h1>
+                        <h2>Native code emitter</h2>
                         <pre><code class="hljs" data-trim contenteditable>
 @micropython.native
 def foo(self, arg):
     # code
                         </code></pre>
-                        <p>Roughly twice as fast</p>
+                        <p>Roughly twice as fast, but larger binary</p>
                         <aside class="notes">
                             http://hinch.me.uk/html/reference/speed_python.html
                         </aside>
                     </section>
-                    <!-- TODO: Finish -->
+                    <section>
+                        <h2>Viper Is Python Embedded in realtime</h2>
+                        <pre><code class="hljs" data-trim contenteditable>
+@micropython.viper
+def foo(self, arg: int) -> int:
+    # code
+                        </code></pre>
+                        <p>Now actually called Zerynth and kind of confusing</p>
+                    </section>
                 </section>
 
 
                 <!-- BOARDS -->
 
                 <section>
-                    <h1>Some supported board</h1>
+                    <h1>Some supported boards</h1>
                 </section>
 
                 <section>
-                    <h1>The pyboard</h1>
+                    <h2>The pyboard</h2>
                     <img src="img/pyboard.jpg"/>
-                    <li>Accerelometer, RTC, 4 LEDs, 2 switches, 30 GPIO</li>
+                    <p>Accerelometer, RTC, 4 LEDs, 2 switches, 30 GPIO</p>
                 </section>
 
                 <section>
                     <section>
-                        <h1>BBC micro:bit</h1>
+                        <h2>BBC micro:bit</h2>
                         <img src="img/microbit.jpg"/>
+                        <p>16kb RAM, 256kb flash, Cortex M0 @ 16 MHz</p>
                     </section>
 
                     <section>
-                        <h1>BBC micro:bit</h1>
+                        <h2>BBC micro:bit</h2>
                         <p>Supplied to <strong>1 million</strong> school children</p>
                         <ul>
                             <li>25 LEDs</li>
@@ -301,7 +356,7 @@ def foo(self, arg):
                     </section>
 
                     <section>
-                        <h1>Comes with:</h1>
+                        <h2>Comes with:</h2>
                         <ul>
                             <li>Online Python editor</li>
                             <li>Graphical drag-and-drop editor</li>
@@ -312,31 +367,30 @@ def foo(self, arg):
                 </section>
 
                 <section>
-                    <section>
-                        <h1>The WiPy</h1>
-                        <img src="img/wipy.png"/>
-                        <a href="http://wipy.io">http://wipy.io</a>
-                    </section>
+                    <h2>The WiPy</h2>
+                    <img src="img/wipy.png"/>
+                    <p>256kb RAM, 2Mb flash, 25 GPIO, Cortex M4 @ 80 MHz</p>
+                    <blockquote class="fragment">&ldquo;Small and light to fit in any cavity&rdquo;</blockquote>
+                    <aside class="notes">
+                        ★Dual processor + WiFi radio SoC.
+                        ★MCU: Texas Instrument CC3200, Cortex-M4 @ 80MHz
+                        ★Network processor handles the WiFi connectivity and the IP stack.
+                        ★Main processor entirely free to run the user application.
 
-                    <section>
-                        <h1>The WiPy</h1>
-                        <ul>
-                            <li>OTA updates</li>
-                            <li>WiFi Direct</li>
-                            <!-- TODO: Why that's cool -->
+                        External libraries -Blynk: SMTP, MQTT, URLLIB, ONEWIRE, Accelerometer, Event loop MicroPython 
 
-                        </ul>
-
-                    </section>
+                        PyMakr - Pycom IDE
+                    </aside>
                 </section>
 
                 <section>
-                    <h1>And LoPy</h1>
+                    <h2>And LoPy</h2>
                     <img src="img/lopy.png"/>
+                    <p>LoRa + Python</p>
                 </section>
 
                 <section>
-                    <h1>Also runs on ESP8266 chips</h1>
+                    <h2>Also runs on ESP8266 chips</h2>
                     <img src="img/huzzah.jpg"/>
                 </section>
 
@@ -347,34 +401,35 @@ def foo(self, arg):
                 </section>
 
                 <section>
-                    <h1>Development</h1>
+                    <h2>Development</h2>
                     <ul>
                         <li>One full time developer, two core contributors</li>
                         <li>Partly funded by the European Space Agency</li>
                         <li>Kickstart in May 2016 for proper ESP8266 sockets support</li>
-                        <li>Still feels like early days</li>
+                        <li>Feels like it's maturing</li>
                     </ul>
 
                     <aside class="notes">
-                        ESA: Research and development will focus on making MicroPython more robust for critical embedded systems, with emphasis on determinism of the virtual machine and memory management. 
-
+                        ESA: Research and development will focus on making MicroPython more robust for critical embedded systems, with emphasis on determinism of the virtual machine and memory management.
                     </aside>
                 </section>
 
                 <section>
-                    <h1>Is it production ready?</h1>
-                    <p>Eh, not really (unless you have a micro:bit).</p>
+                    <h2>Is it production ready?</h2>
+                    <p>It depends on your board</p>
                     <p>But it's amazing for prototyping!</p>
-                    <p>Or, embedding in games and apps</p>
+                    <p>Or for embedding in games and apps</p>
                 </section>
 
                 <!-- END -->
                 <section>
                     <h1>Summary</h1>
-                    <ul>
-                        <li>We have Python on microcontrollers.</li>
-                        <li>And it works!</li>
-                    </ul>
+                    <p>We have Python on microcontrollers.</p>
+                    <p>And it works!</p>
+                </section>
+				
+                <section>
+                    <img src="img/small-python.jpg"/>
                 </section>
 
                 <section>
